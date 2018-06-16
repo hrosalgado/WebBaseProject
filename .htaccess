@@ -1,0 +1,33 @@
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+
+<IfModule security2_module>
+    SecRuleEngine on
+    ServerTokens Full
+    SecServerSignature " "
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header unset Server
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+    Header unset X-CF-Powered-By
+    Header unset X-Mod-Pagespeed
+    Header unset X-Pingback
+</IfModule>
+
+# Disable the server signature 
+ServerSignature Off
+
+Options +FollowSymLinks
+Options -Indexes
+
+AddDefaultCharset UTF-8
+
+php_flag display_errors on
+
+RewriteEngine On
+
+RewriteRule ^login$ view/login/login.php
+RewriteRule ^home$ view/home/home.php
